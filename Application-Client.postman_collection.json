@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "e3fc9901-fb14-44f2-84d7-93030ac70b86",
+		"name": "Application-Client",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "21846753"
+	},
+	"item": [
+		{
+			"name": "FindClient",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/client"
+			},
+			"response": []
+		},
+		{
+			"name": "FindClientById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/client/1"
+			},
+			"response": []
+		},
+		{
+			"name": "PostClient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fullName\": \"João Silva\",\r\n    \"cpf\": \"85858976333\",\r\n    \"date\": \"1988-11-22\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/client"
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateClientById",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"fullName\": \"João Silva\",\r\n    \"cpf\": \"85858976333\",\r\n    \"date\": \"1988-11-23T00:00:00.000+00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/client/2"
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteClientById",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"fullName\": \"João Silva\",\r\n    \"cpf\": \"85858976333\",\r\n    \"date\": \"1988-11-23T00:00:00.000+00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/client/2"
+			},
+			"response": []
+		}
+	]
+}
