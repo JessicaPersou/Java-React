@@ -12,10 +12,9 @@ export function FormClient() {
   }
 
   async function onSave() {
-    console.log("oi");
     try {
       await axios.post(`http://localhost:8080/client`, client);
-      history.push("/clients");
+      history.push("/client");
     } catch (e) {
       console.error(e);
     }

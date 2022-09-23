@@ -8,7 +8,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/clients">
+        <Route exact path="/client">
           <ListClient />
         </Route>
         <Route exact path="/client/:id">
