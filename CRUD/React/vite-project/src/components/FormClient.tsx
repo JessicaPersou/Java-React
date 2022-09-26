@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { IClient } from "../models/client";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function FormClient() {
   const [client, setClient] = useState<IClient>();
-  let history = useHistory();
+  let navigate = useNavigate();
 
   function onChange(name: string, value: any) {
     setClient({ ...client, [name]: value });
@@ -14,7 +14,7 @@ export function FormClient() {
   async function onSave() {
     try {
       await axios.post(`http://localhost:8080/client`, client);
-      history.push("/client");
+      navigate("/client");
     } catch (e) {
       console.error(e);
     }
