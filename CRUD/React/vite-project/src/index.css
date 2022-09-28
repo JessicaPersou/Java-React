@@ -68,3 +68,11 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+input.required {
+  border: 1px solid red;
+}
+
+.message-error {
+  color: red;
+}

@@ -1,6 +1,6 @@
-export interface IClient{
-    id : number;
-    fullName : string;
-    cpf : string;
-    date : Date;
-}
+export type Client = {
+  id: number;
+  fullName: string;
+  cpf: string;
+  date: Date;
+};
