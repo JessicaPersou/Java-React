@@ -1,52 +1,69 @@
 import { useEffect, useState } from "react";
-import { IClient } from "../models/client";
+import { Client } from "../models/client";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 export function FormClient() {
-  const [client, setClient] = useState<IClient>();
   let navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Client>();
 
-  function onChange(name: string, value: any) {
-    setClient({ ...client, [name]: value });
-  }
-
-  async function onSave() {
+  const onSave: SubmitHandler<Client> = (data) => {
     try {
-      await axios.post(`http://localhost:8080/client`, client);
+      console.log(data);
+      // await axios.post(`http://localhost:8080/client`, client);
       navigate("/client");
     } catch (e) {
       console.error(e);
     }
-  }
-
-  useEffect(() => {
-    console.log(client);
-  }, [client]);
+  };
 
   return (
-    <div className="container">
-      <input
-        onChange={(e) => onChange("fullName", e.target.value)}
-        type="text"
-        className="form-control"
-        placeholder="Nome Completo"
-      />
-      <input
-        onChange={(e) => onChange("cpf", e.target.value)}
-        type="text"
-        className="form-control"
-        placeholder="CPF"
-      />
-      <input
-        onChange={(e) => onChange("date", e.target.value)}
-        type="date"
-        className="form-control"
-        placeholder="Data Nascimento"
-      />
-      <button className="btn btn-success" onClick={() => onSave()}>
+    <form
+      onSubmit={handleSubmit(onSave)}
+      className="container d-flex justify-content-between"
+    >
+      <div>
+        <input
+          type="text"
+          className={`form-control m-1 ${errors.fullName ? "required" : ""}`}
+          placeholder="Nome Completo"
+          {...register("fullName", { required: true })}
+        />
+        {errors.fullName?.type === "required" && (
+          <span className="message-error">Fullname is required</span>
+        )}
+      </div>
+      <div>
+        <input
+          type="text"
+          className={`form-control m-1 ${errors.cpf ? "required" : ""}`}
+          placeholder="CPF"
+          {...register("cpf", { required: true })}
+        />
+        {errors.cpf?.type === "required" && (
+          <span className="message-error">CPF is required</span>
+        )}
+      </div>
+      <div>
+        <input
+          type="date"
+          className={`form-control m-1 ${errors.date ? "required" : ""}`}
+          placeholder="Data Nascimento"
+          {...register("date", { required: true })}
+        />
+        {errors.date?.type === "required" && (
+          <span className="message-error">Birthdate is required</span>
+        )}
+      </div>
+      <button type="submit" className="btn btn-success m-1 flex-1">
         Salvar
       </button>
-    </div>
+    </form>
   );
 }
